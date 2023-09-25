@@ -1,0 +1,55 @@
+
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 07/16/2023 09:15:53 AM
+// Design Name: 
+// Module Name: tb_d_ff
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+module tb_d_ff;
+
+        reg clk,d_in;
+        wire q,qb;
+        
+        d_ff dut (.clk(clk),.d_in(d_in),.q(q),.qb(qb));
+        
+        initial 
+        $monitor("simtime = %t, clk = %b, d_in = %b, q = %b, qb = %b",$time,clk,d_in,q,qb);
+        
+        initial 
+        begin
+            clk = 0;
+            forever #5 clk = ~clk;
+        end
+        
+        initial
+        begin 
+             d_in = 0;
+             #10
+             d_in = 1;
+             #10
+             d_in = 0;
+             #10
+             d_in = 1;
+             #10
+     
+             $finish();  
+       end 
+        
+endmodule
